@@ -1,24 +1,56 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column           | Type   | Options     |
+| ---------------- | ------ | ----------- |
+| nickname         | string | null: false |
+| email            | string | null: false |
+| password         | string | null: false |
+| name             | string | null: false |
+| name_kana        | string | null: false |
+| birth_day        | date   | null: false |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :exhibits
+- has_many :purchases
 
-* Database creation
+## exhibitsテーブル
 
-* Database initialization
+| Column       | Type       | Options     |
+| ------------ | ---------- | ----------- |
+| exhibit_name | string     | null: false |
+| description  | text       | null: false |
+| category     | string     | null: false |
+| condition    | string     | null: false |
+| charges      | string     | null: false |
+| source       | string     | null: false |
+| days         | integer    | null: false |
+| price        | integer    | null: false |
+| user         | references |             |
+| purchase     | references |             |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- belongs_to :purchase
 
-* Deployment instructions
+## purchasesテーブル
 
-* ...
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| card_number     | integer    | null: false |
+| expired_date    | date       | null: false |
+| security_number | integer    | null: false |
+| post_code       | integer    | null: false |
+| address         | string     | null: false |
+| phone_number    | integer    | null: false |
+| user            | references |             |
+| purchase        | references |             |
+
+### Association
+
+- belongs_to :user
+- belongs_to :exhibit
