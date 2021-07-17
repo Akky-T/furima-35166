@@ -17,7 +17,7 @@
 - has_many :exhibits
 - has_many :purchases
 
-## exhibitsテーブル
+## itemsテーブル
 
 | Column       | Type       | Options     |
 | ------------ | ---------- | ----------- |
@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :purchase
+- has_one :purchase
 
 ## purchasesテーブル
 
