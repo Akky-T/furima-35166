@@ -11,14 +11,12 @@
 | first_name            | string  | null: false               |
 | last_name_kana        | string  | null: false               |
 | first_name_kana       | string  | null: false               |
-| birth_year_id         | integer | null: false               |
-| birth_month_id        | integer | null: false               |
 | birth_day_id          | integer | null: false               |
 
 ### Association
 
 - has_many :items
-- has_many :addresses
+- has_many :orders
 
 
 ## itemsテーブル
@@ -34,19 +32,17 @@
 | days_id      | integer    | null: false       |
 | price        | integer    | null: false       |
 | user         | references | foreign_key: true |
-| order        | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :address
+- has_one :order
 
 
 ## ordersテーブル
 
 | Column      | Type       | Options           |
 | ----------- | ---------- | ----------------- |
-| price       | integer    | null: false       |
 | user        | references | foreign_key: true |
 | item        | references | foreign_key: true |
 
@@ -66,7 +62,7 @@
 | city             | string     | null: false       |
 | block_number     | string     | null: false       |
 | building_name    | string     |                   |
-| phone_number     | integer    | null: false       |
+| phone_number     | string     | null: false       |
 | order            | references | foreign_key: true |
 
 ### Association
