@@ -2,55 +2,73 @@
 
 ## usersテーブル
 
-| Column           | Type   | Options     |
-| ---------------- | ------ | ----------- |
-| nickname         | string | null: false |
-| email            | string | null: false |
-| password         | string | null: false |
-| name             | string | null: false |
-| name_kana        | string | null: false |
-| birth_day        | date   | null: false |
-
+| Column                | Type    | Options                   |
+| --------------------- | ------- | ------------------------- |
+| nickname              | string  | null: false               |
+| email                 | string  | null: false, unique: true |
+| encrypted_password    | string  | null: false               |
+| last_name             | string  | null: false               |
+| first_name            | string  | null: false               |
+| last_name_kana        | string  | null: false               |
+| first_name_kana       | string  | null: false               |
+| birth_year_id         | integer | null: false               |
+| birth_month_id        | integer | null: false               |
+| birth_day_id          | integer | null: false               |
 
 ### Association
 
-- has_many :exhibits
-- has_many :purchases
+- has_many :items
+- has_many :addresses
+
 
 ## itemsテーブル
 
-| Column       | Type       | Options     |
-| ------------ | ---------- | ----------- |
-| exhibit_name | string     | null: false |
-| description  | text       | null: false |
-| category     | string     | null: false |
-| condition    | string     | null: false |
-| charges      | string     | null: false |
-| source       | string     | null: false |
-| days         | integer    | null: false |
-| price        | integer    | null: false |
-| user         | references |             |
-| purchase     | references |             |
+| Column       | Type       | Options           |
+| ------------ | ---------- | ----------------- |
+| item_name    | string     | null: false       |
+| description  | text       | null: false       |
+| category_id  | integer    | null: false       |
+| condition_id | integer    | null: false       |
+| charges_id   | integer    | null: false       |
+| source_id    | integer    | null: false       |
+| days_id      | integer    | null: false       |
+| price        | integer    | null: false       |
+| user         | references | foreign_key: true |
+| order        | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one :address
 
-## purchasesテーブル
 
-| Column          | Type       | Options     |
-| --------------- | ---------- | ----------- |
-| card_number     | integer    | null: false |
-| expired_date    | date       | null: false |
-| security_number | integer    | null: false |
-| post_code       | integer    | null: false |
-| address         | string     | null: false |
-| phone_number    | integer    | null: false |
-| user            | references |             |
-| purchase        | references |             |
+## ordersテーブル
+
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| price       | integer    | null: false       |
+| user        | references | foreign_key: true |
+| item        | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :exhibit
+- belongs_to :item
+- has_one :address
+
+
+## addressesテーブル
+
+| Column           | Type       | Options           |
+| ---------------- | ---------- | ----------------- |
+| post_code        | string     | null: false       |
+| prefecture_id    | integer    | null: false       |
+| city             | string     | null: false       |
+| block_number     | string     | null: false       |
+| building_name    | string     |                   |
+| phone_number     | integer    | null: false       |
+| order            | references | foreign_key: true |
+
+### Association
+
+- belongs_to :order
