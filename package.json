@@ -1,7 +1,4 @@
 {
-  "scripts": {
-    "build": "webpack"
-  },
   "name": "furima_35166",
   "private": true,
   "dependencies": {
