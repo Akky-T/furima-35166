@@ -6,13 +6,23 @@ class User < ApplicationRecord
 
   has_many :orders, dependent: :destroy
   has_many :items, dependent: :destroy
-  validates :nickname, presence: true
+
+  with_options presence: true do
+    validates :nickname
+    validates :birth_day
+  end
+
   validates :password, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/, message: "is invalid. Include both letters and numbers" }
+  
   zenkaku = /\A[ぁ-んァ-ン一-龥]/
-  validates :last_name, presence: true, format: { with: zenkaku, message: "is invalid. Input full-width characters" }
-  validates :first_name, presence: true, format: { with: zenkaku, message: "is invalid. Input full-width characters" }
+  with_options presence: true, format: { with: zenkaku, message: "is invalid. Input full-width characters" } do
+    validates :last_name
+    validates :first_name
+  end
+  
   zenkaku_kana = /\A[ァ-ヶー－]+\z/
-  validates :last_name_kana, presence: true, format: { with: zenkaku_kana, message: "is invalid. Input full-width katakana characters" }
-  validates :first_name_kana, presence: true, format: { with: zenkaku_kana, message: "is invalid. Input full-width katakana characters" }
-  validates :birth_day, presence: true
+  with_options presence: true, format:  { with: zenkaku_kana, message: "is invalid. Input full-width katakana characters" } do
+    validates :last_name_kana
+    validates :first_name_kana
+  end
 end
