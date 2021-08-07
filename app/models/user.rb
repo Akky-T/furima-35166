@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :orders, dependent: :destroy
-  has_many :items, dependent: :destroy
+  # has_many :orders, dependent: :destroy
+  # has_many :items, dependent: :destroy
 
   with_options presence: true do
     validates :nickname
@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   validates :password, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/, message: "is invalid. Include both letters and numbers" }
   
-  zenkaku = /\A[ぁ-んァ-ン一-龥]/
+  zenkaku = /\A[ぁ-んァ-ン一-龥々ー]+\z/
   with_options presence: true, format: { with: zenkaku, message: "is invalid. Input full-width characters" } do
     validates :last_name
     validates :first_name
