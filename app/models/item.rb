@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :item_name
     validates :description
-    validates :price, numericality: { in: 300..9999999 }
+    validates :price, inclusion: { in: 300..9999999, message: 'is out of setting range' }, numericality: { message: 'is invalid. Input half-width characters' }
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
