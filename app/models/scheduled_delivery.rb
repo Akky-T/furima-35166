@@ -1,4 +1,4 @@
-class Choice5 < ActiveHash::Base
+class ScheduledDelivery < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '1〜2で発送' },

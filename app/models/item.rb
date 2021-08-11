@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_one_attached :image
+  belongs_to :user
 
   with_options presence: true do
     validates :item_name, length: { maximum: 40 }
@@ -10,17 +11,17 @@ class Item < ApplicationRecord
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :choice1
-  belongs_to :choice2
-  belongs_to :choice3
-  belongs_to :choice4
-  belongs_to :choice5
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :charge
+  belongs_to :source
+  belongs_to :scheduled_delivery
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
-    validates :charges_id
+    validates :charge_id
     validates :source_id
-    validates :days_id
+    validates :scheduled_delivery_id
   end
 end

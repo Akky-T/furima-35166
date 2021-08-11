@@ -1,4 +1,4 @@
-class Choice4 < ActiveHash::Base
+class Source < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '北海道' },
