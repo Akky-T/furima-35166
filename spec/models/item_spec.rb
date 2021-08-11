@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-
   describe '商品出品機能' do
     before do
-      @item= FactoryBot.build(:item)
+      @item = FactoryBot.build(:item)
     end
-    
+
     context '商品出品ができる時' do
       it 'item_nameとimage,description、category_id, condition_id, charges_id, source_id, days_id, priceが存在すれば登録できる' do
         @item.image = fixture_file_upload('app/assets/images/test.png')
@@ -71,17 +70,17 @@ RSpec.describe Item, type: :model do
         it '販売価格が¥300~¥9,999,999の範囲外だと保存できない' do
           @item.price = '100'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Price is out of setting range")
+          expect(@item.errors.full_messages).to include('Price is out of setting range')
         end
         it '販売価格は全角数字だと保存できない' do
           @item.price = '１００'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Price is invalid. Input half-width characters")
+          expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
         end
         it '販売価格は数字意外だと保存できない' do
           @item.price = 'abc'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Price is invalid. Input half-width characters")
+          expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
         end
       end
     end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   describe 'ユーザー新規登録' do
     before do
       @user = FactoryBot.build(:user)
@@ -70,22 +69,22 @@ RSpec.describe User, type: :model do
           expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
         end
         it 'passwordは英字のみでは登録できない' do
-          @user.password = "abcdef"
-          @user.password_confirmation = "abcdef"
+          @user.password = 'abcdef'
+          @user.password_confirmation = 'abcdef'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
+          expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
         end
         it 'passwordは数字のみでは登録できない' do
-          @user.password = "123456"
-          @user.password_confirmation = "123456"
+          @user.password = '123456'
+          @user.password_confirmation = '123456'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
+          expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
         end
         it 'passwordは全角では登録できない' do
-          @user.password = "あいうえおか"
-          @user.password_confirmation = "あいうえおか"
+          @user.password = 'あいうえおか'
+          @user.password_confirmation = 'あいうえおか'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
+          expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
         end
         it 'passwordが5文字以下では登録できない' do
           @user.password = '000aa'
@@ -105,10 +104,10 @@ RSpec.describe User, type: :model do
         it 'emailは@が含まれていないと登録できない' do
           @user.email = 'abcdef.co.jp'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Email is invalid")
+          expect(@user.errors.full_messages).to include('Email is invalid')
         end
       end
-        
+
       context 'name' do
         it 'ユーザ本名(全角)の苗字は全角入力でなければ登録できない' do
           @user.last_name = 'abc'
