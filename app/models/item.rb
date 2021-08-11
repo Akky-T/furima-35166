@@ -2,9 +2,10 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :item_name
-    validates :description
+    validates :item_name, length: {maximum: 40}
+    validates :description, length: {maximum: 1000}
     validates :price, inclusion: { in: 300..9999999, message: 'is out of setting range' }, numericality: { message: 'is invalid. Input half-width characters' }
+    validates :image
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
