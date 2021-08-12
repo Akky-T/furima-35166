@@ -34,7 +34,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'category_idが未選択(id=1)では登録できない' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
@@ -44,7 +44,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it 'condition_idが未選択(id=1)では登録できない' do
-        @item.condition_id = '1'
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
@@ -54,7 +54,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Charge can't be blank")
       end
       it 'charge_idが未選択(id=1)では登録できない' do
-        @item.charge_id = '1'
+        @item.charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Charge can't be blank")
       end
@@ -64,7 +64,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Source can't be blank")
       end
       it 'source_idが未選択(id=1)では登録できない' do
-        @item.source_id = '1'
+        @item.source_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Source can't be blank")
       end
@@ -74,7 +74,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
       end
       it 'scheduled_delivery_idが未選択(id=1)では登録できない' do
-        @item.scheduled_delivery_id = '1'
+        @item.scheduled_delivery_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
       end
