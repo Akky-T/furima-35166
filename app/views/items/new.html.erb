@@ -8,6 +8,7 @@
     <%= form_with model: @item, local: true do |f| %>
 
     <%= render partial: 'shared/error_messages', locals: { variable: @item }, model: f.object %>
+    
 
     <%# 商品画像 %>
     <div class="img-upload">
