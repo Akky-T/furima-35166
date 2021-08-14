@@ -1,14 +1,14 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:show, :edit, :update, :move_to_toppage]
-  before_action :move_to_toppage, only: [:edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :move_to_toppage, :destroy]
+  before_action :move_to_toppage, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
-      @item = Item.new
+    @item = Item.new
   end
 
   def create
@@ -34,6 +34,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
+
   private
 
   def item_params
@@ -46,9 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_toppage
-    unless @item.user == current_user
-      redirect_to root_path
-    end
+    redirect_to root_path unless @item.user == current_user
   end
-
 end
