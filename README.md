@@ -43,6 +43,7 @@
 
 | Column      | Type       | Options           |
 | ----------- | ---------- | ----------------- |
+| price       | integer    | null: false       |
 | user        | references | foreign_key: true |
 | item        | references | foreign_key: true |
 
@@ -68,4 +69,5 @@
 ### Association
 
 - belongs_to :order
+
 
