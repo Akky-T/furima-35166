@@ -43,7 +43,6 @@
 
 | Column      | Type       | Options           |
 | ----------- | ---------- | ----------------- |
-| price       | integer    | null: false       |
 | user        | references | foreign_key: true |
 | item        | references | foreign_key: true |
 
@@ -63,7 +62,7 @@
 | city             | string     | null: false       |
 | block_number     | string     | null: false       |
 | building_name    | string     |                   |
-| phone_number     | string     | null: false       |
+| phone_number     | integer    | null: false       |
 | order            | references | foreign_key: true |
 
 ### Association
