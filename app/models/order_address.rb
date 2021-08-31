@@ -9,7 +9,7 @@ class OrderAddress
     validates :city
     validates :block_number
     validates :phone_number, format: {with: /\A[0-9]+\z/, message: "is invalid. Input only number"},
-                             length: { in: 10..11, message: "is too short" }
+                             length: { in: 10..11, message: ",please specify in the range of 10 to 11 digits" }
     validates :token
   end
 

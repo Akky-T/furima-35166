@@ -72,7 +72,12 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberが9桁では登録できない' do
         @order_address.phone_number = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is too short")
+        expect(@order_address.errors.full_messages).to include("Phone number ,please specify in the range of 10 to 11 digits")
+      end
+      it 'phone_numberが12桁では登録できない' do
+        @order_address.phone_number = '123456789012'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number ,please specify in the range of 10 to 11 digits")
       end
       it 'phone_numberが全角数字では登録できない' do
         @order_address.phone_number = '１２３４５６７８９０'
